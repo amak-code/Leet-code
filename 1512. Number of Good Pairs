@@ -1,0 +1,28 @@
+//Given an array of integers nums.
+
+//A pair (i,j) is called good if nums[i] == nums[j] and i < j.
+
+//Return the number of good pairs.
+
+class Solution {
+public:
+    int numIdenticalPairs(vector<int>& nums) {
+        int total = 0;
+    int n = 1;
+    int numOfPairs = 0;
+    sort(nums.begin(), nums.end());
+    for(int i = 0; i < nums.size() - 1; i++){
+        if (nums[i] == nums[i+1]){
+            n=n+1;
+        } else {
+            numOfPairs = n * (n-1) / 2;
+            total = total + numOfPairs;
+            n = 1;
+        }
+    }
+    numOfPairs = n * (n-1) / 2;
+    total = total + numOfPairs;
+        
+    return total;
+    }
+};
