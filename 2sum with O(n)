@@ -1,0 +1,38 @@
+//In this solution we consider that exactly one solution exist
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+       
+        int[] arr = new int[2];
+        if (nums.length < 2) {
+            return nums;
+        } else if (nums.length == 2) {
+            arr[0] = 0;
+            arr[1] = 1;
+            return arr;
+        }
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                arr[0] = map.get(target - nums[i]);
+                arr[1] = i;
+                return arr;
+            }
+
+            map.put(nums[i], i);
+        }
+
+        return arr;
+    }
+    
+    public static void main(String[] args) {
+        int[] listArr = {2};
+        //int[] arr = twoSum(listArr, 9);
+        int[] arr = twoSumHashMap(listArr,9);
+        if(arr.length < 2){
+            System.out.println("Array length is less then 2.");
+        }
+        else {System.out.println("[ " + arr[0] + ", " + arr[1] + "]");}
+    }
+}
