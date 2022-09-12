@@ -1,0 +1,91 @@
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+
+
+Example 1:
+
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+Example 2:
+
+Input: strs = ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings.
+ 
+
+Constraints:
+
+1 <= strs.length <= 200
+0 <= strs[i].length <= 200
+strs[i] consists of only lowercase English letters.
+
+---------------------------------------------------------------------------------------
+SOLUTION
+
+extension StringProtocol {
+    subscript(offset: Int) -> Character {
+        self[index(startIndex, offsetBy: offset)]
+    }
+}
+
+
+func longestCommonPrefix(array:[String]) -> String{
+    var prefix: String = ""
+    var indexNumber: Int = 0
+    var firstWord = array[0]
+    var newArray = array[1...]
+    var counter: Int = 201
+    if firstWord.isEmpty{
+        return ""
+    }
+    var firstWordSize = firstWord.count - 1
+    var notFound: Bool = false
+    
+    if array.count == 1{
+        return array[0]
+    }
+    
+    for word in newArray {
+        if word.isEmpty{
+            return ""
+        }
+        for (index,letter) in word.enumerated() {
+            
+            if index > firstWordSize{
+                indexNumber = index - 1
+                break
+            }
+            if letter != firstWord[index] {
+                if index > 0 {
+                    indexNumber = index - 1
+                }
+                else {
+                    
+                    return ""
+                }
+                notFound = true
+                break
+            }
+            
+            if index == word.count - 1{
+                indexNumber = index
+            }
+        }
+        
+        if indexNumber < counter {
+            counter = indexNumber
+        }
+       print("ind \(indexNumber)")
+        print("count \(counter)")
+    }
+
+        let index1 = firstWord.index(firstWord.startIndex, offsetBy: 0)
+        let index2 = firstWord.index(firstWord.startIndex, offsetBy: counter)
+        let indexRange = index1...index2
+        prefix = String(firstWord[indexRange])
+
+    return prefix
+}
+
+print(longestCommonPrefix(array: ["ir","car"]))
