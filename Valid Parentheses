@@ -1,0 +1,43 @@
+/* Given a string s containing just the characters '(', ')',  determine if the input string is valid.
+ 
+ An input string is valid if:
+
+ Open parentheses must be closed by closing parentheses.
+ Every close parenthesis has a corresponding open parenthesis.
+
+ Examples:
+
+ (((((()))))) -- VALID
+ ()()()()     -- VALID
+ (((((((()    -- INVALID
+ ((()(())))   -- VALID
+ ))((  – INVALID
+ ()()  –
+*/
+
+
+func validParentheses(parentheses: String) -> Bool {
+
+    var countOfLeftPar = 0
+       
+    for el in parentheses {
+    
+        if el == "(" {
+            countOfLeftPar += 1            
+        }
+        else {
+            countOfLeftPar -= 1
+        }
+        
+        if countOfLeftPar < 0 {
+            return false
+        }
+    }
+    
+    if countOfLeftPar != 0 {
+        return false
+    }
+    
+    return true
+    
+}
