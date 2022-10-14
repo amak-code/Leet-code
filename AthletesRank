@@ -1,0 +1,71 @@
+/* You are given an integer array score of size n, where score[i] is the score of the ith athlete in a competition. All the scores are guaranteed to be unique.
+
+ The athletes are placed based on their scores, where the 1st place athlete has the highest score, the 2nd place athlete has the 2nd highest score, and so on. The placement of each athlete determines their rank:
+
+ The 1st place athlete's rank is "Gold Medal".
+ The 2nd place athlete's rank is "Silver Medal".
+ The 3rd place athlete's rank is "Bronze Medal".
+ For the 4th place to the nth place athlete, their rank is their placement number (i.e., the xth place athlete's rank is "x").
+ Return an array answer of size n where answer[i] is the rank of the ith athlete.
+
+ 
+ EXAMPLE:
+ Input: score = [10,3,8,9,4]
+ Output: ["Gold Medal","5","Bronze Medal","Silver Medal","4"]
+ Explanation: The placements are [1st, 5th, 3rd, 2nd, 4th].
+ 
+ input - array of int [10,3,8,9,4]
+ output - array of strings ["Gold Medal","5","Bronze Medal","Silver Medal","4"]
+ */
+
+func athletesRank(ranks: [Int]) -> [String] {
+    let goldMedal = "Gold Medal"
+    let silverMedal = "Silver Medal"
+    let bronzeMedal = "Bronze Medal"
+    let numberOfAthletes = ranks.count
+    var copyOfAthletesRank = ranks
+    var max = 0
+    var maxIndex = 0
+    _ = 0
+    _ = 0
+    var counter = 0
+    var arrayOfRanks = [Int](repeating: 0, count: numberOfAthletes)
+    var arrayOfStringRanks: [String] = []
+    
+    for _ in arrayOfRanks {
+        max = copyOfAthletesRank.max()!
+       // print("max \(max)")
+        maxIndex = ranks.firstIndex(of: max)!
+     //   print("index \(maxIndex)")
+        counter += 1
+      //  print("counter \(counter)")
+        arrayOfRanks[maxIndex] = counter
+        
+        //copyOfAthletesRank.remove(at: maxIndex)
+      copyOfAthletesRank[maxIndex] = 0
+
+    }
+    
+  //  print(arrayOfRanks)
+    
+    for rank in arrayOfRanks {
+        if rank == 1{
+            arrayOfStringRanks.append(goldMedal)
+        }
+        else if rank == 2 {
+            arrayOfStringRanks.append(silverMedal)
+        }
+        
+       else if rank == 3 {
+            arrayOfStringRanks.append(bronzeMedal)
+        }
+        else {
+            arrayOfStringRanks.append("\(rank)")
+        }
+    }
+    
+    return arrayOfStringRanks
+    
+}
+
+print(athletesRank(ranks: [7,3,8,9,4]))
